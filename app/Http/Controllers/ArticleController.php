@@ -10,18 +10,23 @@ class ArticleController extends Controller
 {
     public function store(Request $request)
     {
-        $article=new Article();
+       /* $article=new Article();
         $article->title = $request->input('title');
         $article->author = $request->input('author');
         $article->subject = $request->input('subject');
-        $article->save();
-        return response()->json($article);
+        $article->save();*/
+        Article::query()->create([
+            'title'=>$request['title'],
+            'author'=>$request['author'],
+            'subject'=>$request['subject'],
+        ]);
+        return response()->json(Article::query());
     }
 
     public function index(Request $request)
     {
         $article=Article::all();
-        if (isset($article))
+        if ($article)
         {
             return response()->json([
                 'student'=>$article

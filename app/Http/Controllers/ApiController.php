@@ -10,18 +10,18 @@ class ApiController extends Controller
 {
     public function store(Request $request)
     {
-        $student=new Student();
-        $student->fname = $request->input('fname');
-        $student->lname = $request->input('lname');
-        $student->password = $request->input('password');
-        $student->save();
-        return response()->json($student);
+        Student::query()->create([
+            'fname'=>$request['fname'],
+            'lname'=>$request['lname'],
+            'password'=>$request['password'],
+        ]);
+        return response()->json(Student::query());
     }
 
     public function index(Request $request)
     {
         $student=Student::all();
-       if (isset($student))
+       if ($student)
        {
            return response()->json([
                'student'=>$student
