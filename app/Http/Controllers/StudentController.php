@@ -15,11 +15,7 @@ class StudentController extends Controller
         return response()->json([
             $data
         ]);
-        Student::query()->create([
-            'fname' => $request['fname'],
-            'lname' => $request['lname'],
-            'password' => $request['password'],
-        ]);
+        Student::query()->create();
         return response()->json(Student::query());
     }
 
@@ -37,4 +33,33 @@ class StudentController extends Controller
 
         }
     }
-}
+        function show($id)
+        {
+            $student = Student::find($id);
+            if ($student) {
+                return response()->json([
+                    'student' => $student
+                ]);
+            } else {
+                return response()->json([
+                    "message" => "No exist Student with  this Id"
+                ]);
+
+            }
+        }
+    function delete($id)
+    {
+        $student = Student::find($id);
+        if ($student) {
+            $student->delete($id);
+            return response()->json([
+                "deleted  successfully "
+            ]);
+        } else {
+            return response()->json([
+                "message" => "No exist Student with  this Id"
+            ]);
+
+        }
+    }
+    }

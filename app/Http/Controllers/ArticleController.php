@@ -15,13 +15,8 @@ class ArticleController extends Controller
         return response()->json([
             $data
         ]);
-        Article::query()->create([
-            'title' => $request['title'],
-            'author' => $request['author'],
-            'subject' => $request['subject'],
-        ]);
+        Article::query()->create();
         return response()->json(Article::query());
-
     }
 
     public function index(Request $request)
@@ -36,6 +31,34 @@ class ArticleController extends Controller
                 'Error' => 'data not found'
             ]);
 
+        }
+
+    }
+
+    public function show($id)
+    {
+        $article = Article::find($id);
+        if ($article) {
+            return response()->json($article);
+        } else {
+            return response()->json([
+                "message" => "No exist Article with  this Id"
+            ]);
+        }
+    }
+
+    public function delete($id)
+    {
+        $article = Article::find($id);
+        if ($article) {
+            $article->delete($id);
+            return response()->json([
+                'Article with this id ,deleted successfully'
+            ]);
+        } else {
+            return response()->json([
+                "message" => "No exist Article with  this Id"
+            ]);
         }
     }
 }

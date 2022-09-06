@@ -26,7 +26,6 @@ class StudentRequest extends FormRequest
         return [
             'fname'=>'required',
             'lname'=>'required',
-            'password'=>'required',
         ];
     }
 }
