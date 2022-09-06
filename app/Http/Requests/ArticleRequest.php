@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+
 class ArticleRequest extends FormRequest
 {
     /**
@@ -29,12 +30,6 @@ class ArticleRequest extends FormRequest
         ];
 
     }
-
-
-
-
-
-
 
 
 }

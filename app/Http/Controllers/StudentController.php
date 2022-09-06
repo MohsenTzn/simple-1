@@ -33,20 +33,22 @@ class StudentController extends Controller
 
         }
     }
-        function show($id)
-        {
-            $student = Student::find($id);
-            if ($student) {
-                return response()->json([
-                    'student' => $student
-                ]);
-            } else {
-                return response()->json([
-                    "message" => "No exist Student with  this Id"
-                ]);
 
-            }
+    function show($id)
+    {
+        $student = Student::find($id);
+        if ($student) {
+            return response()->json([
+                'student' => $student
+            ]);
+        } else {
+            return response()->json([
+                "message" => "No exist Student with  this Id"
+            ]);
+
         }
+    }
+
     function delete($id)
     {
         $student = Student::find($id);
@@ -62,4 +64,4 @@ class StudentController extends Controller
 
         }
     }
-    }
+}
