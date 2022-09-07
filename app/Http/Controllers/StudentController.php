@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRequest;
+use App\Http\Resources\StudentResource;
 use App\Models\Article;
 use App\Models\Student;
 use http\Env\Response;
@@ -16,32 +17,19 @@ class StudentController extends Controller
         return response()->json([
             $data
         ]);
-        Student::query()->create();
-        return response()->json(Student::query());
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $student = Student::all();
-        if ($student) {
-            return response()->json([
-                'student' => $student
-            ]);
-        } else {
-            return response()->json([
-                'Error' => 'data not found'
-            ]);
-
-        }
+        return StudentResource::collection(Student::all());
     }
 
     function show(Student $student)
     {
         //$student = Student::find($id);
 
-        return response()->json([
-            'student' => $student
-        ]);
+        return StudentResource::make($student);
+
     }
 
     function delete(Student $student)
@@ -49,7 +37,7 @@ class StudentController extends Controller
         //$student = Student::find($id);
         $student->delete();
         return response()->json([
-            "deleted  successfully "
+            "deleted successfully !"
         ]);
 
 
