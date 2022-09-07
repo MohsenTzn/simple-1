@@ -35,30 +35,19 @@ class ArticleController extends Controller
 
     }
 
-    public function show($id)
+    public function show(Article $article)
     {
-        $article = Article::find($id);
-        if ($article) {
+       // $article = Article::find($article);
             return response()->json($article);
-        } else {
-            return response()->json([
-                "message" => "No exist Article with  this Id"
-            ]);
-        }
+
     }
 
-    public function delete($id)
+    public function delete(Article $article)
     {
-        $article = Article::find($id);
-        if ($article) {
-            $article->delete($id);
+
+            $article->delete();
             return response()->json([
                 'Article with this id ,deleted successfully'
-            ]);
-        } else {
-            return response()->json([
-                "message" => "No exist Article with  this Id"
-            ]);
-        }
+                ]);
     }
 }

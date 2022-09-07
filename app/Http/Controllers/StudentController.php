@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRequest;
+use App\Models\Article;
 use App\Models\Student;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -34,34 +35,23 @@ class StudentController extends Controller
         }
     }
 
-    function show($id)
+    function show(Student $student)
     {
-        $student = Student::find($id);
-        if ($student) {
-            return response()->json([
-                'student' => $student
-            ]);
-        } else {
-            return response()->json([
-                "message" => "No exist Student with  this Id"
-            ]);
+        //$student = Student::find($id);
 
-        }
+        return response()->json([
+            'student' => $student
+        ]);
     }
 
-    function delete($id)
+    function delete(Student $student)
     {
-        $student = Student::find($id);
-        if ($student) {
-            $student->delete($id);
-            return response()->json([
-                "deleted  successfully "
-            ]);
-        } else {
-            return response()->json([
-                "message" => "No exist Student with  this Id"
-            ]);
+        //$student = Student::find($id);
+        $student->delete();
+        return response()->json([
+            "deleted  successfully "
+        ]);
 
-        }
+
     }
 }
