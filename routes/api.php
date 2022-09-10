@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Resources\StudentResource;
 use Illuminate\Http\Request;
@@ -24,15 +25,18 @@ Route::middleware(['middleware' => 'auth:admin'])->group(function() {
 
 });*/
 
-//Student
-Route::post('/student/store',[StudentController::class, 'store']);
-Route::get('/student',[StudentController::class, 'index']);
-Route::get('/student/show/{student}',[StudentController::class, 'show']);
-Route::get('/student/delete/{student}',[StudentController::class, 'delete']);
-
-
 //Article
 Route::post('/Article/store',[ArticleController::class, 'store']);
 Route::get('/Article',[ArticleController::class, 'index']);
 Route::get('/Article/show/{article}',[ArticleController::class, 'show']);
 Route::get('/Article/delete/{article}',[ArticleController::class, 'delete']);
+Route::get('/Article/{article}/News',[ArticleController::class, 'ArticleIndex']);
+
+//News
+Route::post('/News/store',[NewsController::class, 'store']);
+Route::get('/News',[NewsController::class, 'index']);
+Route::get('/News/show/{news}',[NewsController::class, 'show']);
+Route::get('/News/delete/{news}',[NewsController::class, 'delete']);
+Route::get('/News/{news}/Article',[NewsController::class, 'indexNews']);
+
+

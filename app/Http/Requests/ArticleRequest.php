@@ -24,12 +24,9 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'author' => 'required',
-            'subject' => 'required|max:69',
+            'title'=>'required',
+            'subject'=>'required',
+            'author'=>'required',
         ];
-
     }
-
-
 }
