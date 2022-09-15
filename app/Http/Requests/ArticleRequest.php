@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\News;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ArticleRequest extends FormRequest
@@ -24,9 +25,11 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required',
+            'name'=>'required',
             'subject'=>'required',
             'author'=>'required',
+
+
         ];
     }
 }

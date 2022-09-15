@@ -4,16 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\News;
 
 class Article extends Model
 {
     use HasFactory;
     protected $table='articles';
     protected $fillable=[
-        'news_id','title', 'subject', 'author'
+        'name', 'subject', 'author'
     ];
 
-    public function News()
+    public function news()
     {
         return $this->belongsTo(News::class);
     }

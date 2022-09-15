@@ -18,7 +18,7 @@ class ArticleFactory extends Factory
     {
         return [
             "news_id" => $this->faker->numberBetween('1','50'),
-            "title" => $this->faker->title(),
+            "name" => $this->faker->name(),
             "subject" => $this->faker->name(),
             "author" => $this->faker->lastName(),
         ];

@@ -27,6 +27,9 @@ class NewsRequest extends FormRequest
             'title'=>'required',
             'demo'=>'required',
             'category'=>'required',
+            'news.*.name.required' => 'You must have an news name.',
+            'news.*.subject.required'=> 'You must have an news subject',
+            'news.*.author.required' => 'You must have an news author',
         ];
     }
 }

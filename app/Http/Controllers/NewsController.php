@@ -4,26 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NewsRequest;
 use App\Http\Resources\NewsResource;
+use App\Models\Article;
 use App\Models\News;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    public function store(NewsRequest $request)
+    public function store(NewsRequest $request,News $news , Article $article)
     {
-        $data=News::create($request->validated());
-        return response()->json($data);
+       $news=News::create($request->validated());
+        return new NewsResource($news);
+
+
+        $news->articles()->saveMany([
+            new article(['message' => 'A new article.']),
+
+        ]);
+        return new NewsResource($news);
+
     }
 
-    public function indexNews(News $news)
-    {
-        return News::with('Article')->where('id',$news->id)->get();
-    }
 
     public function index(News $news)
     {
-       // return News::with('Article')->where('id',$news->id)->get();
-        return NewsResource::collection(News::all());
+        return News::with('articles')->get();
+        //return NewsResource::collection(News::all());
 
     }
     public function show(News $news)
@@ -34,7 +39,7 @@ class NewsController extends Controller
     {
         $news->delete();
         return response()->json([
-            "deleted succesfully"
+            'status' => '200 OK'
         ]);
     }
 }

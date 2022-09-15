@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\News;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ArticleResource extends JsonResource
@@ -14,13 +15,15 @@ class ArticleResource extends JsonResource
      */
     public function toArray($request)
     {
+    //var_dump($this);
         return [
             'id' => $this->id,
-            'title' => $this->title,
+            'name' => $this->name,
             'subject' => $this->subject,
             'author' => $this->author,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'news' => NewsResource::collection($this->whenLoaded('news')),
 
 
         ];

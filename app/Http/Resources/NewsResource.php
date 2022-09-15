@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Article;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class NewsResource extends JsonResource
@@ -19,7 +20,7 @@ class NewsResource extends JsonResource
             'title' => $this->title,
             'demo' => $this->demo,
             'category' => $this->category,
-            //'Article' => new ArticleResource($this->Article),
+            'articles' =>  ArticleResource::collection($this->whenLoaded('articles')),
         ];
     }
 }

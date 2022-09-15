@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('news_id')->nullable();
-            $table->string('title');
+            $table->string('name');
             $table->string('subject');
             $table->string('author');
             $table->timestamps();

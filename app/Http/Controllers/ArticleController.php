@@ -12,15 +12,15 @@ class ArticleController extends Controller
 {
     public function store(ArticleRequest $request)
     {
-        $data=Article::create($request->validated());
+        $article=Article::create($request->validated());
         return response()->json([
-           $data
+           $article
         ]);
     }
     public function index()
     {
-        //$article = Article::with('News')->get();
-        return ArticleResource::collection(Article::all());
+        $articles = Article::with('news')->get();
+        return ArticleResource::collection($articles);
     }
     public function show(Article $article)
     {
@@ -29,8 +29,10 @@ class ArticleController extends Controller
     public function delete(Article $article)
     {
        $article->delete();
-       return response()->json([
-           'deleted successfully'
-       ]);
+
+           return response()->json([
+               'status' => '200 OK'
+           ]);
+
     }
 }
