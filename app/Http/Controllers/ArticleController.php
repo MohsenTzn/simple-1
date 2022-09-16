@@ -17,10 +17,10 @@ class ArticleController extends Controller
            $article
         ]);
     }
-    public function index()
+    public function index(Article $article)
     {
-        $articles = Article::with('news')->get();
-        return ArticleResource::collection($articles);
+        $article= Article::with('news')->get();
+        return ArticleResource::collection($article);
     }
     public function show(Article $article)
     {

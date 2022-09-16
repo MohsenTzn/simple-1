@@ -15,12 +15,13 @@ class NewsResource extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
             'id' => $this->id,
             'title' => $this->title,
             'demo' => $this->demo,
             'category' => $this->category,
-            'articles' =>  ArticleResource::collection($this->whenLoaded('articles')),
+            'news_id' =>  new NewsResource($this->whenLoaded('articles')),
         ];
     }
 }

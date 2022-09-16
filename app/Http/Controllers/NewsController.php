@@ -13,13 +13,18 @@ class NewsController extends Controller
     public function store(NewsRequest $request,News $news , Article $article)
     {
        $news=News::create($request->validated());
-        return new NewsResource($news);
+        //return new NewsResource($news);
 
 
         $news->articles()->saveMany([
-            new article(['message' => 'A new article.']),
+            new Article([
+                'name' =>"mohsen",
+                'subject' =>"ssss",
+                'author' =>"ddd"
+            ]),
 
         ]);
+
         return new NewsResource($news);
 
     }
@@ -27,8 +32,8 @@ class NewsController extends Controller
 
     public function index(News $news)
     {
-        return News::with('articles')->get();
-        //return NewsResource::collection(News::all());
+        $news= News::with('articles')->get();
+        return response()->json($news);
 
     }
     public function show(News $news)

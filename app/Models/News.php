@@ -16,6 +16,6 @@ class News extends Model
     ];
     public function articles()
     {
-        return $this->hasMany(Article::class,'news_id','id');
+        return $this->hasMany(Article::class);
     }
 }
