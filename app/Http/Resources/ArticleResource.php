@@ -15,7 +15,7 @@ class ArticleResource extends JsonResource
      */
     public function toArray($request)
     {
-   // var_dump($this);
+        // var_dump($this);
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -23,7 +23,7 @@ class ArticleResource extends JsonResource
             'author' => $this->author,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'articles' =>new NewsResource($this->whenLoaded('news')),
+            'news' => new NewsResource($this->whenLoaded('news')),
 
 
         ];

@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         // ]);
         \App\Models\News::factory(50)->create();
         \App\Models\Article::factory(50)->create();
+        \App\Models\Podcast::factory(50)->create();
+        \App\Models\Track::factory(50)->create();
 
     }
 }

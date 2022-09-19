@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('tracks', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('news_id')->nullable();
+            $table->integer('podcast_id')->unsigned()->nullable();
             $table->string('name');
-            $table->string('subject');
-            $table->string('author');
-            $table->foreign('news_id')->references('id')->on('news')->onDelete('cascade');
+            $table->string('composer');
+            $table->foreign('podcast_id')->references('id')->on('podcasts')->onDelete('cascade');
             $table->timestamps();
-
         });
     }
 
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('tracks');
     }
 };

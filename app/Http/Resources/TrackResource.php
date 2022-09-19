@@ -2,10 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Article;
+use App\Models\Podcast;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class NewsResource extends JsonResource
+class TrackResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,13 +15,12 @@ class NewsResource extends JsonResource
      */
     public function toArray($request)
     {
-        //dd($this);
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'demo' => $this->demo,
-            'category' => $this->category,
-            'articles' => ArticleResource::collection($this->whenLoaded('articles')),
+            'name' => $this->name,
+            'composer' => $this->composer,
+            'podcast' => new PodcastResource($this->whenLoaded('podcast')),
+
         ];
     }
 }
