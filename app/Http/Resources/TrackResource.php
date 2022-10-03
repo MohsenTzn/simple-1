@@ -19,6 +19,7 @@ class TrackResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'composer' => $this->composer,
+            'tags' =>  TagResource::collection($this->whenLoaded('tags')),
             'podcast' => new PodcastResource($this->whenLoaded('podcast')),
 
         ];

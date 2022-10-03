@@ -18,5 +18,11 @@ class Article extends Model
     {
         return $this->belongsTo(News::class);
     }
-
+    public function comments(){
+        return $this->morphMany(Comment::class,'commentable');
+    }
+    public function tags(){
+        return $this->morphMany(Tag::class,'taggable');
+    }
 }
+

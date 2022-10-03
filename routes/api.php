@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\StudentController;
@@ -34,6 +35,8 @@ Route::get('/article/{article}',[ArticleController::class, 'show']);
 Route::delete('/article/{article}',[ArticleController::class, 'delete']);
 Route::put('/article/{article}',[ArticleController::class, 'update']);
 
+
+
 //News
 Route::post('/news',[NewsController::class, 'store']);
 Route::get('/news',[NewsController::class, 'index']);
@@ -63,7 +66,9 @@ Route::put('/track/{track}',[TrackController::class, 'update']);
 
 
 
+//Comment
 
+Route::get('/comment',[CommentController::class, 'index']);
 
 
 
