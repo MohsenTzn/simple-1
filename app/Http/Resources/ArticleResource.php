@@ -19,6 +19,7 @@ class ArticleResource extends JsonResource
          //dd($this);
         return [
             'id' => $this->id,
+            'news_id' => $this->news_id,
             'name' => $this->name,
             'subject' => $this->subject,
             'author' => $this->author,
