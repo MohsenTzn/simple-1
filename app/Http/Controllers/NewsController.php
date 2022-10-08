@@ -8,28 +8,18 @@ use App\Http\Resources\NewsResource;
 use App\Models\Article;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class NewsController extends Controller
 {
-    public function store(NewsRequest $request, News $news, Article $article)
+    public function store(NewsRequest $request,Article $article)
     {
+        dd($request->tags());
         $news = News::create($request->validated());
-        //return new NewsResource($news);
-
-
-        $news->articles()->saveMany([
-            new Article([
-                'name' => "mohsen",
-                'subject' => "ssss",
-                'author' => "ddd"
-            ]),
-
-        ]);
-
+        $news->articles()->createMany(Arr::get($request->validated(),'articles'));
         return new NewsResource($news);
 
     }
-
 
     public function index()
     {

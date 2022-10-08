@@ -9,9 +9,9 @@ class Tag extends Model
 {
     use HasFactory;
     protected $table = 'tags';
-   /* protected $fillable=[
+    protected $fillable=[
          'taggable_id', 'taggable_type'
-    ];*/
+    ];
     public function taggable(){
         return $this->morphTo();
     }

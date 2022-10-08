@@ -15,6 +15,7 @@ class ArticleController extends Controller
 {
     public function store(ArticleRequest $request)
     {
+        //dd($request->all());
         $article = Article::create($request->validated());
         $article->tags()->create([
         ]);

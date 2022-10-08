@@ -24,12 +24,14 @@ class NewsRequest extends FormRequest
     public function rules()
     {
         return [
+            //'news_id'=>'required|exist:news,id',
             'title'=>'required',
             'demo'=>'required',
             'category'=>'required',
-            'news.*.name' => 'You must have an news name.',
-            'news.*.subject'=> 'You must have an news subject',
-            'news.*.author' => 'You must have an news author',
+            'articles'=>'nullable|array',
+            'articles.*.name'=>'required',
+            'articles.*.subject'=>'required',
+           'articles.*.author'=>'required',
         ];
     }
 }

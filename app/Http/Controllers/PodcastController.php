@@ -7,20 +7,15 @@ use App\Http\Resources\PodcastResource;
 use App\Models\Podcast;
 use App\Models\Track;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class PodcastController extends Controller
 {
     public function store(PodcastRequest $request)
     {
         $podcast = Podcast::create($request->validated());
-        $podcast->tracks()->saveMany([
-            new Track([
-                'name' => "m",
-                'composer' => "salam"
-            ])
-        ]);
+        $podcast->tracks()->createMany(Arr::get($request->validated(),'tracks'));
         return new PodcastResource($podcast);
-
     }
 
     public function index()
