@@ -9,7 +9,10 @@ use App\Models\News;
 class Article extends Model
 {
     use HasFactory;
-    protected $table='articles';
+    public function getTable()
+{
+    return "articles";
+}
     protected $fillable=[
         'name', 'subject', 'author'
     ];

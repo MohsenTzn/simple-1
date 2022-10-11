@@ -12,17 +12,20 @@ use function PHPUnit\Framework\isNull;
 
 class CommentController extends Controller
 {
-    public function index($modelType, $modeId, Request $request)
+    public function store($modelType, $modelId, Request $request)
     {
-        $model = Arr::get(config("morph", $modelType));
-        if (!isNull($model)) {
+        $model = Arr::get(config("morph"), $modelType);
+        //dd($model);
+        $model = app($model)->findOrFail($modelId);
+        if (!is_null($model)) {
             $comment = new Comment([
-                "comment" => Arr::get($request, 'comment')
+                "content" => Arr::get($request, "content"),
+                "news_id" => Arr::get($request, "news_id"),
             ]);
             $model->comments()->save($comment);
-            return Response()->json(["date" => $comment]);
+            return ["data" => $comment];
         }
+        return null;
     }
-
 }
 

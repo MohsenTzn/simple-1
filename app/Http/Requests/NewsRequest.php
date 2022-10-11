@@ -31,7 +31,7 @@ class NewsRequest extends FormRequest
             'articles'=>'nullable|array',
             'articles.*.name'=>'required',
             'articles.*.subject'=>'required',
-           'articles.*.author'=>'required',
+            'articles.*.author'=>'required',
         ];
     }
 }

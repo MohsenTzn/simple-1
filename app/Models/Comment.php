@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
-    protected $table="comments";
+    protected $fillable = ["content"];
+
     public function getTable()
     {
         return 'comments';
     }
-    protected $fillable=['comment'];
     public function commentable(){
         return $this->morphTo();
     }

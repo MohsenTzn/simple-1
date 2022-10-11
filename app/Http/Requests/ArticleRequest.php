@@ -28,8 +28,6 @@ class ArticleRequest extends FormRequest
             'name'=>'required',
             'subject'=>'required',
             'author'=>'required',
-            //'news_id'=>'required|exist:news,id',
-
         ];
     }
 }

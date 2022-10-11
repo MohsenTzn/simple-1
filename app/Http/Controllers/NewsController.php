@@ -14,9 +14,10 @@ class NewsController extends Controller
 {
     public function store(NewsRequest $request,Article $article)
     {
-        dd($request->tags());
         $news = News::create($request->validated());
         $news->articles()->createMany(Arr::get($request->validated(),'articles'));
+        //dd($article->tags());
+        $article->tags()->create();
         return new NewsResource($news);
 
     }

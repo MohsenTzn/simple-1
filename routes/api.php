@@ -37,6 +37,7 @@ Route::put('/article/{article}',[ArticleController::class, 'update']);
 
 
 
+
 //News
 Route::post('/news',[NewsController::class, 'store']);
 Route::get('/news',[NewsController::class, 'index']);
@@ -68,8 +69,9 @@ Route::put('/track/{track}',[TrackController::class, 'update']);
 
 //Comment
 
-Route::get('/comment',[CommentController::class, 'index']);
-Route::post('/comment',[CommentController::class, 'index']);
+//Route::get('/comment',[CommentController::class, 'store']);
+Route::post('/comment/{commentable_type}/{article}',[CommentController::class, 'store']);
+Route::post('/comment/{commentable_type}/{track}',[CommentController::class, 'store']);
 
 
 

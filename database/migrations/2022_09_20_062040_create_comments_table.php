@@ -14,8 +14,10 @@ return new class extends Migration {
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('comment');
+            $table->string('content');
            $table->morphs('commentable');
+           /* $table->unsignedBigInteger('news_id');
+            $table->index("news_id");*/
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
