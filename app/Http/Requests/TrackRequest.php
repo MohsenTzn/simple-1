@@ -25,7 +25,7 @@ class TrackRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'composer' => 'required',
+            'composer' => 'required'
         ];
     }
 }

@@ -25,11 +25,10 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
+            'news_id'=>'required',
             'name'=>'required',
             'subject'=>'required',
             'author'=>'required',
-
-
         ];
     }
 }

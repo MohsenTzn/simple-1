@@ -26,6 +26,9 @@ class PodcastRequest extends FormRequest
         return [
             'name'=>'required',
             'topic'=>'required',
+            'tracks'=>'nullable|array',
+            'tracks.*name'=>'required',
+            'tracks.*composer'=>'required'
         ];
     }
 }

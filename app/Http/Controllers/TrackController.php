@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TrackRequest;
 use App\Http\Resources\TrackResource;
+use App\Models\Comment;
 use App\Models\Track;
 use Illuminate\Http\Request;
 
@@ -12,12 +13,14 @@ class TrackController extends Controller
     public function store(TrackRequest $request)
     {
         $track = Track::create($request->validated());
+        $track->tags()->create([
+        ]);
         return response()->json($track);
     }
 
     public function index()
     {
-        $track = Track::with('podcast')->get();
+        $track = Track::with('podcast','tags')->get();
         return TrackResource::collection($track);
     }
 
