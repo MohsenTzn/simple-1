@@ -12,11 +12,10 @@ use Illuminate\Support\Arr;
 
 class NewsController extends Controller
 {
-    public function store(NewsRequest $request,Article $article)
+    public function store(NewsRequest $request, Article $article)
     {
         $news = News::create($request->validated());
-        $news->articles()->createMany(Arr::get($request->validated(),'articles'));
-        //dd($article->tags());
+        $news->articles()->createMany(Arr::get($request->validated(), 'articles'));
         $article->tags()->create();
         return new NewsResource($news);
 
