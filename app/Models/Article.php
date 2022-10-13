@@ -14,7 +14,7 @@ class Article extends Model
     return "articles";
 }
     protected $fillable=[
-        'name', 'subject', 'author','news_id'
+        'name', 'subject', 'author'
     ];
 
     public function news()

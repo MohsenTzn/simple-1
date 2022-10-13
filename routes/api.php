@@ -64,6 +64,7 @@ Route::put('/track/{track}', [TrackController::class, 'update']);
 
 //Comment
 Route::post('/comment/{commentableType}/{commentableId}', [CommentController::class, 'store']);
+Route::get('/comment', [CommentController::class, 'index']);
 
 
 

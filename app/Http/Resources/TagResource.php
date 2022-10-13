@@ -22,7 +22,7 @@ class TagResource extends JsonResource
                'taggable_type' => $this->taggable_type,
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
-                'articles'=> ArticleResource::collection($this->whenLoaded('articles')),
+
             ];
     }
 }
