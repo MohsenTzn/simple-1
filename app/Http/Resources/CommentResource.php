@@ -16,8 +16,9 @@ class CommentResource extends JsonResource
     {
         return[
             'id' => $this->id,
-            'comment' => $this->comment,
-            'articles' => ArticleResource::collection($this->whenLoaded('articles')),
+            'content' => $this->content,
+            'commentable_type'=>$this->commentable_type,
+            'commentable_id'=>$this->commentable_id,
         ];
     }
 }

@@ -25,7 +25,7 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'news_id'=>'required',
+            'news_id'=>'required|exists:news,id',
             'name'=>'required',
             'subject'=>'required',
             'author'=>'required',

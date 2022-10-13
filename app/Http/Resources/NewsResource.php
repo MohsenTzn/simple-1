@@ -22,7 +22,6 @@ class NewsResource extends JsonResource
             'demo' => $this->demo,
             'category' => $this->category,
             'articles' => ArticleResource::collection($this->whenLoaded('articles')),
-            'tags' =>  TagResource::collection($this->whenLoaded('tags')),
         ];
     }
 }

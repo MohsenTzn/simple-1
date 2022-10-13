@@ -25,8 +25,6 @@ class ArticleResource extends JsonResource
             'author' => $this->author,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'tags' =>  TagResource::collection($this->whenLoaded('tags')),
-            'news' => new NewsResource($this->whenLoaded('news')),
         ];
     }
 }

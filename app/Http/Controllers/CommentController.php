@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ArticleResource;
+use App\Http\Resources\CommentResource;
 use App\Models\Article;
 use App\Models\Comment;
 use http\Env\Response;
@@ -21,9 +23,16 @@ class CommentController extends Controller
                 "content" => Arr::get($request, "content"),
             ]);
             $model->comments()->save($comment);
-            return ["data" => $comment];
+            //return ["data" => $comment];
+            return CommentResource::collection($comment);
         }
         return null;
     }
+    public function index()
+    {
+        $comment = Comment::query()->get();
+        return CommentResource::collection($comment);
+    }
+
 }
 

@@ -20,7 +20,7 @@ class TrackController extends Controller
 
     public function index()
     {
-        $track = Track::with('podcast','tags')->get();
+        $track = Track::with('podcast')->get();
         return TrackResource::collection($track);
     }
 

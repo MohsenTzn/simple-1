@@ -26,7 +26,7 @@ class ArticleController extends Controller
 
     public function index()
     {
-        $article = Article::with('news','tags')->get();
+        $article = Article::with('news')->get();
         return ArticleResource::collection($article);
     }
 
