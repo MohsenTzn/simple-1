@@ -1,15 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Requests\ArticleRequest;
-use App\Http\Requests\TrackRequest;
 use App\Http\Resources\ArticleResource;
 use App\Models\Article;
-use App\Models\Comment;
-use App\Models\News;
-use App\Models\Track;
-use Illuminate\Http\Request;
+use App\Models\Tag;
 
 class ArticleController extends Controller
 {
@@ -17,16 +12,27 @@ class ArticleController extends Controller
     {
         //dd($request->all());
         $article = Article::create($request->validated());
-        $article->tags()->create([
+        /*$tag = Tag::create($request->validated());*/
+       /* $article->tags()->saveMany([
+           new Tag(['name'=>$request->name]),
+           new Tag(['taggable_type'=>$request->taggable_type]),
+        ]);*/
+        $tag=$article->tags()->create([
+            'name'=>$request->name,
+
         ]);
+        //$article->tags()->attach($tag);
         return response()->json([
-            $article
+            $tag
         ]);
     }
-
     public function index()
+        /* {
+        $article = Article::with(['news' => function ($query) {
+        return $query->select(['title']);
+        }, 'tags'])->get();*/
     {
-        $article = Article::with('news')->get();
+        $article = Article::with('news', 'tags')->get();
         return ArticleResource::collection($article);
     }
 
@@ -51,5 +57,3 @@ class ArticleController extends Controller
         return response()->json($article);
     }
 }
-
-

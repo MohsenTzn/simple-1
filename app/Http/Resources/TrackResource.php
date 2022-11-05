@@ -15,13 +15,14 @@ class TrackResource extends JsonResource
      */
     public function toArray($request)
     {
+        //dd($this);
         return [
             'id' => $this->id,
-            'Podcadt_id' => $this->podcast_id,
+            'podcast_id' => $this->podcast_id,
             'name' => $this->name,
             'composer' => $this->composer,
             'podcast' => new PodcastResource($this->whenLoaded('podcast')),
-
+            'tags' =>  TagResource::collection($this->whenLoaded('tags')),
         ];
     }
 }

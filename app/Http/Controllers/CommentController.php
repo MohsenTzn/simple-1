@@ -33,6 +33,17 @@ class CommentController extends Controller
         $comment = Comment::query()->get();
         return CommentResource::collection($comment);
     }
+    public function show($commentableType, $commentableId)
+    {
+
+        $model = Arr::get(config("morph"), $commentableType);
+        $model = app($model)->findOrFail($commentableId);
+        //dd($model->comments()->get());
+        if (!is_null($model)) {
+            return CommentResource::collection($model->comments()->get());
+        }
+        return null;
+    }
 
 }
 

@@ -16,7 +16,6 @@ class ArticleResource extends JsonResource
      */
     public function toArray($request)
     {
-         //dd($this);
         return [
             'id' => $this->id,
             'news_id' => $this->news_id,
@@ -25,6 +24,8 @@ class ArticleResource extends JsonResource
             'author' => $this->author,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'news' => new NewsResource($this->whenLoaded('news')),
+            'tags'=>TagResource::collection($this->whenLoaded('tags')),
         ];
     }
 }

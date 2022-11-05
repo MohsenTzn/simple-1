@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Route;
 /*
 Route::middleware(['middleware' => 'auth:admin'])->group(function() {
     Route::get('/dashboard', [AdminController::class, 'dashboard']);
-
 });*/
 
 //Article
@@ -64,16 +63,3 @@ Route::put('/track/{track}', [TrackController::class, 'update']);
 
 //Comment
 Route::post('/comment/{commentableType}/{commentableId}', [CommentController::class, 'store']);
-Route::get('/comment', [CommentController::class, 'index']);
-
-
-
-
-
-
-
-
-
-
-
-

@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->unsignedBigInteger('taggable_id')->nullable();
-            $table->string('taggable_type');
+            $table->string('name');
+          /*  $table->unsignedBigInteger('taggable_id')->nullable();
+            $table->string('taggable_type')->nullable();*/
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

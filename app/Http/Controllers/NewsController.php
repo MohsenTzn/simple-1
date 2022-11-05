@@ -7,18 +7,17 @@ use App\Http\Requests\NewsRequest;
 use App\Http\Resources\NewsResource;
 use App\Models\Article;
 use App\Models\News;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
 class NewsController extends Controller
 {
-    public function store(NewsRequest $request, Article $article)
+    public function store(NewsRequest $request)
     {
         $news = News::create($request->validated());
         $news->articles()->createMany(Arr::get($request->validated(), 'articles'));
-        $article->tags()->create();
         return new NewsResource($news);
-
     }
 
     public function index()
