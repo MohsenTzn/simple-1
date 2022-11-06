@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Authcontroller;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
@@ -26,6 +27,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['middleware' => 'auth:admin'])->group(function() {
     Route::get('/dashboard', [AdminController::class, 'dashboard']);
 });*/
+Route::middleware('auth:api')->get('/user',function (RegisterRequest $request){
+    return $request->user();
+});
 
 //Article
 Route::post('/article', [ArticleController::class, 'store']);
@@ -63,3 +67,9 @@ Route::put('/track/{track}', [TrackController::class, 'update']);
 
 //Comment
 Route::post('/comment/{commentableType}/{commentableId}', [CommentController::class, 'store']);
+
+
+
+Route::post('/register', [Authcontroller::class, 'register']);
+Route::post('/login', [Authcontroller::class, 'login']);
+
