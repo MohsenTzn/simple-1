@@ -3,6 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Article;
+use App\Models\News;
+use App\Models\Podcast;
+use App\Models\Role;
+use App\Models\Track;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,16 +20,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+    /*    User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        \App\Models\News::factory(50)->create();
-        \App\Models\Article::factory(50)->create();
-        \App\Models\Podcast::factory(50)->create();
-        \App\Models\Track::factory(50)->create();
+         User::factory()->create([
+             'name' => 'Test User',
+             'email' => 'test@example.com',
+         ]);
+        News::factory(50)->create();
+        Article::factory(50)->create();
+       Podcast::factory(50)->create();
+        Track::factory(50)->create();*/
+        Role::factory(3)->create();
 
     }
 }

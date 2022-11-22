@@ -1,39 +1,40 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use http\Env\Response;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+
 class Authcontroller extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-      public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request)
     {
-        $input=$request->validated();
-        $input['password']=bcrypt($input['password']);
-        $user= User::create($input);
-        $access['token'] =  $user->createToken('AuthToken')->accessToken;
-        //dd($accessToken);
-        return response()->json(['user'=>$user , 'access_token'=>$access]);
+        $input = $request->validated();
+        $input['password'] = bcrypt($input['password']);
+        $user = User::create($input);
+        $token = $user->createToken('AuthToken')->accessToken;
+        return response(['user' => $user, 'access_token' => $token]);
     }
+
     public function login(LoginRequest $request)
     {
-        $logindate=$request->validated();
-         if (!auth()->attempt($logindate)){
-             return Response()->json(["message"=>'invalid request']);
-         }
-        $success['token'] =  auth()->user()->createToken('AuthToken')-> accessToken;
-        return response()->json(["user"=>auth()->user() ,'success'=>$success]);
+        $logindata = $request->validated();
+        if (!auth()->attempt($logindata)) {
+            return Response()->json(["message" => 'invalid request']);
+        }
+        $user=Auth::user();
+        $token = $user->createToken('AuthToken')->accessToken;
+        return response()->json(['access_token' => $token]);
 
     }
+
 }
 

@@ -27,9 +27,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['middleware' => 'auth:admin'])->group(function() {
     Route::get('/dashboard', [AdminController::class, 'dashboard']);
 });*/
-Route::middleware('auth:api')->get('/user',function (RegisterRequest $request){
+
+/*Route::middleware('auth:api')->get('/user',function (Request $request){
     return $request->user();
-});
+});*/
 
 //Article
 Route::post('/article', [ArticleController::class, 'store']);
@@ -70,6 +71,10 @@ Route::post('/comment/{commentableType}/{commentableId}', [CommentController::cl
 
 
 
+/*Route::middleware('auth.api')->group(function(){
+
+});*/
 Route::post('/register', [Authcontroller::class, 'register']);
 Route::post('/login', [Authcontroller::class, 'login']);
+
 
